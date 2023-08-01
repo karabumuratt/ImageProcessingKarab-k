@@ -1,0 +1,18 @@
+import cv2
+import numpy as np
+
+resim1 = cv2.imread("brain.jpg")
+
+cv2.imshow("Brain",resim1)
+
+#Resmin boyutunu öğrenmek için:
+print(resim1.size)
+
+#Resmin veri tipini öğrenmek için:
+print(resim1.dtype)
+
+#Resmin genişliğini, yüksekliğini ve kaç kanaldan oluştuğunu öğrenmek için:
+print(resim1.shape)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
