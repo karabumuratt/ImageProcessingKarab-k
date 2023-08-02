@@ -1,0 +1,23 @@
+from PIL import Image, ImageDraw
+
+# Görüntü boyutları
+width = 200
+height = 200
+
+# Yeni siyah görüntü oluşturma
+image = Image.new("RGB", (width, height), "black")
+
+# ImageDraw nesnesi oluşturma
+draw = ImageDraw.Draw(image)
+
+# Daire çizme
+center_x = width // 2
+center_y = height // 2
+radius = 80
+draw.ellipse((center_x - radius, center_y - radius, center_x + radius, center_y + radius), outline="white", width=5)
+
+# Görüntüyü kaydetme
+image.save("beyaz_daire.png")
+
+# Görüntüyü gösterme (isteğe bağlı)
+image.show()
