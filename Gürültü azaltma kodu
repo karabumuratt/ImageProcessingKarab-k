@@ -1,0 +1,27 @@
+import numpy as np
+import cv2
+
+def mean_filter(image, filter_size):
+    height, width = image.shape
+    filtered_image = np.zeros((height, width), np.uint8)
+    padding = filter_size // 2
+    
+    for y in range(padding, height - padding):
+        for x in range(padding, width - padding):
+            # Filtre boyutuna göre görüntünün yerel bölgesini alın
+            region = image[y - padding : y + padding + 1, x - padding : x + padding + 1]
+            # Yerel bölgenin ortalama değerini hesaplayın
+            mean_value = np.mean(region)
+            # Filtrelenmiş piksel değerini ortalama değere ayarlayın
+            filtered_image[y, x] = int(mean_value)
+    
+    return filtered_image
+
+# Gürültülü görüntüyü yükleyin 
+noisy_image = cv2.imread('noisy_image.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Ortalama filtreyi 3x3 filtre boyutuyla uygulayın
+filtered_image = mean_filter(noisy_image, filter_size=3)
+
+# Filtrelenmiş görüntüyü kaydedin
+cv2.imwrite('filtered_image.jpg', filtered_image)
