@@ -1,0 +1,24 @@
+import cv2
+import numpy as np
+
+def histogram_equalization(image):
+   # OpenCV'nin cv2.equalizeHist() işlevi kullanılır 
+    equalized_image = cv2.equalizeHist(image)
+    return equalized_image
+
+# resim yüklenir
+image = cv2.imread('image.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Histogram eşitlemeyi uygularız
+equalized_image = histogram_equalization(image)
+
+# Görselleştirme için orijinal ve eşitlenmiş görüntüler yan yana birleştirilir
+concatenated_image = np.hstack((image, equalized_image))
+
+# Resimleri göster
+cv2.imshow('Histogram Equalization', concatenated_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# Eşitlenmiş görüntü kaydedilir
+cv2.imwrite('equalized_image.jpg', equalized_image)
