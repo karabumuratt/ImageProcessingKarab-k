@@ -1,0 +1,21 @@
+import cv2
+import numpy as np
+
+# Görüntüyü yükle
+image = cv2.imread("input_image.jpg")
+
+# Maskenin boyutunu belirle (örneğin 3x3)
+mask_size = 3
+
+# Yumuşatma (ortalama alma) filtresi maskesi oluştur
+mask = np.ones((mask_size, mask_size), dtype=np.float32) / (mask_size * mask_size)
+
+# Filtreleme işlemi
+blurred_image = cv2.filter2D(image, -1, mask)
+
+# kaydet
+cv2.imshow("Bulanıklaştırılmış Görüntü", blurred_image)
+cv2.imwrite("blurred_image.jpg", blurred_image)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
