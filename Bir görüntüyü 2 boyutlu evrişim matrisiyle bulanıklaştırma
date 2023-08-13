@@ -1,0 +1,17 @@
+import cv2
+import numpy as np
+
+image = cv2.imread("input_image.jpg")
+
+#  matris (3x3 boyutunda bir bulanıklaştırma matrisi)
+kernel = np.array([[1, 1, 1],
+                   [1, 1, 1],
+                   [1, 1, 1]]) / 9.0
+
+blurred_image = cv2.filter2D(image, -1, kernel)
+
+cv2.imshow("Bulanıklaştırılmış Görüntü", blurred_image)
+cv2.imwrite("blurred_image.jpg", blurred_image)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
